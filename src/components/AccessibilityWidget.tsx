@@ -205,7 +205,7 @@ interface NavigableElement extends Element {
   type?: string;
 }
 
-const AccessibilityWidget = ({theme }:any) => {
+const AccessibilityWidget = () => {
   // State management
   const [fontSize, setFontSize] = useState(16);
   const [highContrast, setHighContrast] = useState(false);
@@ -401,9 +401,9 @@ const AccessibilityWidget = ({theme }:any) => {
             <div className="menu-section space-y-4">
               <h3 className="text-lg font-semibold mb-4">Accessibility Tools</h3>
   
-            <div className="tool-group">
+            <div className="tool-group text-black">
               <button onClick={() => setFontSize(s => Math.min(24, s + 2))}>
-                <MdZoomIn /> Increase Text
+                <MdZoomIn  className='text-black'/> Increase Text
               </button>
               <button onClick={() => setFontSize(s => Math.max(12, s - 2))}>
                 <MdZoomOut /> Decrease Text

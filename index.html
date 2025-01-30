@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Widget Test Page</title>
+    <!-- Add React and ReactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            margin-bottom: 30px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        input, textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Accessibility Widget Test Page</h1>
+        <nav>
+            <a href="#text-section">Text Content</a> |
+            <a href="#table-section">Table Example</a> |
+            <a href="#form-section">Form Example</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="text-section" class="container">
+            <h2>Text Content Section</h2>
+            <div class="card">
+                <h3>Sample Article</h3>
+                <p>This is a sample article that demonstrates various text styles and content. The accessibility widget should be able to modify how this content appears based on user preferences.</p>
+                <p>Here's a <a href="#">sample link</a> that can be highlighted using the widget's link highlighting feature.</p>
+            </div>
+
+            <div class="card">
+                <h3>Features to Test</h3>
+                <ul>
+                    <li>Font size adjustment (try increasing and decreasing)</li>
+                    <li>Dark mode toggle</li>
+                    <li>High contrast mode</li>
+                    <li>Link highlighting</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="table-section" class="container">
+            <h2>Table Example</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                        <th>Header 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Row 1, Cell 1</td>
+                        <td>Row 1, Cell 2</td>
+                        <td>Row 1, Cell 3</td>
+                    </tr>
+                    <tr>
+                        <td>Row 2, Cell 1</td>
+                        <td>Row 2, Cell 2</td>
+                        <td>Row 2, Cell 3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="form-section" class="container">
+            <h2>Form Example</h2>
+            <form>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Footer content with another <a href="#">test link</a> for verification.</p>
+    </footer>
+
+    <!-- Add the Accessibility Widget -->
+    <script 
+        src="dist/accessibility-widget.js" 
+        data-accessibility-widget 
+        data-auto-init="true"
+        data-position="bottom-right"
+        data-theme="light">
+    </script>
+</body>
+</html>
