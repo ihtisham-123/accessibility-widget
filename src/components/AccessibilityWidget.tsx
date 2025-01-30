@@ -199,8 +199,6 @@ import './AccessibilityWidget.css';
 
 interface Props {
 
-  position?: 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
-
   theme?: 'light' | 'dark';
 
 }
@@ -211,7 +209,7 @@ interface NavigableElement extends Element {
   type?: string;
 }
 
-const AccessibilityWidget = ({position,theme}) => {
+const AccessibilityWidget = ({theme }:any) => {
   // State management
   const [fontSize, setFontSize] = useState(16);
   const [highContrast, setHighContrast] = useState(false);

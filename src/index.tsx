@@ -4,7 +4,6 @@ import AccessibilityWidget from './components/AccessibilityWidget';
 import './components/AccessibilityWidget.css';
 
 interface Config {
-  position?: 'bottom-right';
   theme?: 'light' | 'dark';
 }
 
@@ -13,20 +12,21 @@ function initialize(config: Config = {}) {
   container.id = 'accessibility-widget-container';
   document.body.appendChild(container);
 
-ReactDOM.render(
-    <AccessibilityWidget position={config.position || 'bottom-right'} theme={config.theme || 'light'} />,
+  ReactDOM.render(
+    <AccessibilityWidget theme={config.theme || 'light'} />,
     container
-);
+  );
 }
 
+// Auto-initialize when the script tag is present
 document.addEventListener('DOMContentLoaded', () => {
   const script = document.querySelector('script[data-accessibility-widget]');
   if (script && script.getAttribute('data-auto-init') !== 'false') {
     initialize({
-      position: script?.getAttribute('data-position') as Config['position'] || 'bottom-right',
       theme: script?.getAttribute('data-theme') as Config['theme'] || 'light'
     });
   }
 });
 
+// Export initialize function for manual initialization
 (window as any).AccessibilityWidget = { initialize };
