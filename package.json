@@ -1,0 +1,17 @@
+{
+  "name": "accessibility-widget",
+  "version": "1.0.0",
+  "description": "Accessibility Widget for Web",
+  "main": "dist/accessibility-widget.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "clean": "rimraf dist",
+    "predeploy": "npm run clean && npm run build",
+    "deploy": "gh-pages -d dist --message \"Deploy accessibility widget\" --git git"
+  },
+  "homepage": "https://ihtisham-123.github.io/accessibility-widget",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihtisham-123/accessibility-widget.git"
+  }
+}
