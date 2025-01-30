@@ -4,16 +4,20 @@ import AccessibilityWidget from './components/AccessibilityWidget';
 import './components/AccessibilityWidget.css';
 
 interface Config {
-  theme?: 'light' | 'dark';
+  autoInit?: boolean;
 }
 
 function initialize(config: Config = {}) {
-  const container = document.createElement('div');
-  container.id = 'accessibility-widget-container';
-  document.body.appendChild(container);
+  // Create container if it doesn't exist
+  let container = document.getElementById('accessibility-widget-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'accessibility-widget-container';
+    document.body.appendChild(container);
+  }
 
   ReactDOM.render(
-    <AccessibilityWidget theme={config.theme || 'light'} />,
+    <AccessibilityWidget />,
     container
   );
 }
@@ -23,10 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const script = document.querySelector('script[data-accessibility-widget]');
   if (script && script.getAttribute('data-auto-init') !== 'false') {
     initialize({
-      theme: script?.getAttribute('data-theme') as Config['theme'] || 'light'
+      autoInit: script.getAttribute('data-auto-init') !== 'false'
     });
   }
 });
 
 // Export initialize function for manual initialization
 (window as any).AccessibilityWidget = { initialize };
+
+export default initialize;

@@ -197,11 +197,7 @@ import {
 } from 'react-icons/md';
 import './AccessibilityWidget.css';
 
-interface Props {
 
-  theme?: 'light' | 'dark';
-
-}
 interface NavigableElement extends Element {
   textContent: string;
   value?: string;
