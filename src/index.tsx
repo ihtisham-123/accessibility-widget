@@ -4,7 +4,7 @@ import AccessibilityWidget from './components/AccessibilityWidget';
 import './components/AccessibilityWidget.css';
 
 interface Config {
-  position?: 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
+  position?: 'bottom-right';
   theme?: 'light' | 'dark';
 }
 
