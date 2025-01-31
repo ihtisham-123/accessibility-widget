@@ -182,6 +182,21 @@
 // export default AccessibilityWidget;
 
 
+// import React, { useState, useEffect, useRef } from 'react';
+// import { 
+//   MdAccessibility, 
+//   MdZoomIn, 
+//   MdZoomOut, 
+//   MdHighlight, 
+//   MdKeyboard,
+//   MdMotionPhotosOff,
+//   MdTouchApp,
+//   MdVolumeUp,
+//   MdVolumeOff,  MdFormatSize,
+//   MdMouse
+// } from 'react-icons/md';
+// // import './AccessibilityWidget.css';
+// import styles from './AccessibilityWidget.module.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   MdAccessibility, 
@@ -192,11 +207,11 @@ import {
   MdMotionPhotosOff,
   MdTouchApp,
   MdVolumeUp,
-  MdVolumeOff,  MdFormatSize,
+  MdVolumeOff,  
+  MdFormatSize,
   MdMouse
 } from 'react-icons/md';
-import './AccessibilityWidget.css';
-
+import styles from './AccessibilityWidget.module.css';
 
 interface NavigableElement extends Element {
   textContent: string;
@@ -379,38 +394,220 @@ const AccessibilityWidget = () => {
     setCursorStyle('default');
   };
 
-  return (
+  // return (
    
-      <div className="accessibility-widget fixed bottom-20 z-1000 right-20 text-black">
-        <button 
-          className="widget-toggle fixed right-4 bottom-4"
-          onClick={() => setShowMenu(!showMenu)}
-          aria-label="Accessibility settings"
-          aria-expanded={showMenu}
+  //     <div className="accessibility-widget fixed bottom-20 z-1000 right-20 text-black">
+  //       <button 
+  //         className="widget-toggle fixed right-4 bottom-4"
+  //         onClick={() => setShowMenu(!showMenu)}
+  //         aria-label="Accessibility settings"
+  //         aria-expanded={showMenu}
+  //       >
+  //         <MdAccessibility size={24}  />
+  //       </button>
+  
+  //       {showMenu && (
+  //         <div 
+  //           className="widget-menu fixed right-4 top-16 bg-white rounded-lg shadow-lg p-4 border border-gray-200 max-h-[90vh] overflow-y-auto w-80" 
+  //           ref={menuRef} 
+  //           role="dialog" 
+  //           aria-modal="true"
+  //         >
+  //           <div className="menu-section space-y-4">
+  //             <h3 className="text-lg font-semibold mb-4">Accessibility Tools</h3>
+  
+  //           <div className="tool-group text-black">
+  //             <button onClick={() => setFontSize(s => Math.min(24, s + 2))}>
+  //               <MdZoomIn  className='text-black'/> Increase Text
+  //             </button>
+  //             <button onClick={() => setFontSize(s => Math.max(12, s - 2))}>
+  //               <MdZoomOut /> Decrease Text
+  //             </button>
+  //           </div>
+
+  //           <div className="tool-group">
+  //             <button 
+  //               onClick={() => setHighContrast(!highContrast)}
+  //               aria-pressed={highContrast}
+  //             >
+  //               <MdHighlight /> High Contrast
+  //             </button>
+  //           </div>
+
+  //           <div className="tool-group">
+  //             <button 
+  //               onClick={() => setDyslexiaFriendly(!dyslexiaFriendly)}
+  //               aria-pressed={dyslexiaFriendly}
+  //             >
+  //               <MdKeyboard /> Dyslexia Friendly
+  //             </button>
+  //           </div>
+
+  //           <div className="tool-group">
+  //             <button 
+  //               onClick={() => setMotionReduction(!motionReduction)}
+  //               aria-pressed={motionReduction}
+  //             >
+  //               <MdMotionPhotosOff /> Reduce Motion
+  //             </button>
+  //           </div>
+
+  //           <div className="tool-group">
+  //             <button 
+  //               onClick={() => setKeyboardNavActive(!keyboardNavActive)}
+  //               aria-pressed={keyboardNavActive}
+  //             >
+  //               <MdTouchApp /> Keyboard Nav
+  //             </button>
+  //           </div>
+
+  //           <div className="tool-group">
+  //             <button 
+  //               onClick={isSpeaking ? stopSpeaking : () => navigableElements[activeElementIndex] && readElement(navigableElements[activeElementIndex])}
+  //               aria-pressed={isSpeaking}
+  //             >
+  //               {isSpeaking ? <MdVolumeOff /> : <MdVolumeUp />} 
+  //               {isSpeaking ? 'Stop Reading' : 'Start Reading'}
+  //             </button>
+  //           </div>
+
+  //           <div className="speech-rate-control">
+  //             <label>Speech Rate:</label>
+  //             <input
+  //               type="range"
+  //               min="0.5"
+  //               max="2"
+  //               step="0.1"
+  //               value={speechRate}
+  //               onChange={(e) => setSpeechRate(parseFloat(e.target.value))}
+  //             />
+  //             <span>{speechRate.toFixed(1)}x</span>
+  //           </div> <div className="tool-group">
+  //             <h4><MdFormatSize /> Text Spacing</h4>
+  //             <div className="spacing-control">
+  //               <label>Line Height</label>
+  //               <input
+  //                 type="range"
+  //                 min="1"
+  //                 max="3"
+  //                 step="0.1"
+  //                 value={textSpacing.lineHeight}
+  //                 onChange={e => setTextSpacing(prev => ({
+  //                   ...prev,
+  //                   lineHeight: parseFloat(e.target.value)
+  //                 }))}
+  //               />
+  //               <span>{textSpacing.lineHeight}x</span>
+  //             </div>
+
+  //             <div className="spacing-control">
+  //               <label>Letter Spacing</label>
+  //               <input
+  //                 type="range"
+  //                 min="0"
+  //                 max="10"
+  //                 step="0.5"
+  //                 value={textSpacing.letterSpacing}
+  //                 onChange={e => setTextSpacing(prev => ({
+  //                   ...prev,
+  //                   letterSpacing: parseFloat(e.target.value)
+  //                 }))}
+  //               />
+  //               <span>{textSpacing.letterSpacing}px</span>
+  //             </div>
+
+  //             <div className="spacing-control">
+  //               <label>Word Spacing</label>
+  //               <input
+  //                 type="range"
+  //                 min="0"
+  //                 max="20"
+  //                 step="1"
+  //                 value={textSpacing.wordSpacing}
+  //                 onChange={e => setTextSpacing(prev => ({
+  //                   ...prev,
+  //                   wordSpacing: parseFloat(e.target.value)
+  //                 }))}
+  //               />
+  //               <span>{textSpacing.wordSpacing}px</span>
+  //             </div>
+  //           </div>
+
+  //           {/* Custom Cursor Controls */}
+  //           <div className="tool-group">
+  //             <h4><MdMouse /> Cursor Style</h4>
+  //             <div className="cursor-grid">
+  //               <button 
+  //                 onClick={() => setCursorStyle('default')}
+  //                 className={cursorStyle === 'default' ? 'active' : ''}
+  //                 aria-pressed={cursorStyle === 'default'}
+  //               >
+  //                 Default
+  //               </button>
+  //               <button 
+  //                 onClick={() => setCursorStyle('large')}
+  //                 className={cursorStyle === 'large' ? 'active' : ''}
+  //                 aria-pressed={cursorStyle === 'large'}
+  //               >
+  //                 Large
+  //               </button>
+  //               <button 
+  //                 onClick={() => setCursorStyle('high-contrast')}
+  //                 className={cursorStyle === 'high-contrast' ? 'active' : ''}
+  //                 aria-pressed={cursorStyle === 'high-contrast'}
+  //               >
+  //                 High Contrast
+  //               </button>
+  //               <button 
+  //                 onClick={() => setCursorStyle('reading')}
+  //                 className={cursorStyle === 'reading' ? 'active' : ''}
+  //                 aria-pressed={cursorStyle === 'reading'}
+  //               >
+  //                 Reading
+  //               </button>
+  //             </div>
+  //           </div>
+
+  //           <button className="reset-button" onClick={resetSettings}>
+  //             Reset All Settings
+  //           </button>
+  //           </div>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
+
+  return (
+    <div className={styles.accessibilityWidget}>
+      <button 
+        className={styles.widgetToggle}
+        onClick={() => setShowMenu(!showMenu)}
+        aria-label="Accessibility settings"
+        aria-expanded={showMenu}
+      >
+        <MdAccessibility size={24} />
+      </button>
+  
+      {showMenu && (
+        <div 
+          className={styles.widgetMenu} 
+          ref={menuRef} 
+          role="dialog" 
+          aria-modal="true"
         >
-          <MdAccessibility size={24}  />
-        </button>
+          <div className={styles.menuSection}>
+            <h3>Accessibility Tools</h3>
   
-        {showMenu && (
-          <div 
-            className="widget-menu fixed right-4 top-16 bg-white rounded-lg shadow-lg p-4 border border-gray-200 max-h-[90vh] overflow-y-auto w-80" 
-            ref={menuRef} 
-            role="dialog" 
-            aria-modal="true"
-          >
-            <div className="menu-section space-y-4">
-              <h3 className="text-lg font-semibold mb-4">Accessibility Tools</h3>
-  
-            <div className="tool-group text-black">
+            <div className={styles.toolGroup}>
               <button onClick={() => setFontSize(s => Math.min(24, s + 2))}>
-                <MdZoomIn  className='text-black'/> Increase Text
+                <MdZoomIn /> Increase Text
               </button>
               <button onClick={() => setFontSize(s => Math.max(12, s - 2))}>
                 <MdZoomOut /> Decrease Text
               </button>
             </div>
-
-            <div className="tool-group">
+  
+            <div className={styles.toolGroup}>
               <button 
                 onClick={() => setHighContrast(!highContrast)}
                 aria-pressed={highContrast}
@@ -418,8 +615,8 @@ const AccessibilityWidget = () => {
                 <MdHighlight /> High Contrast
               </button>
             </div>
-
-            <div className="tool-group">
+  
+            <div className={styles.toolGroup}>
               <button 
                 onClick={() => setDyslexiaFriendly(!dyslexiaFriendly)}
                 aria-pressed={dyslexiaFriendly}
@@ -427,8 +624,8 @@ const AccessibilityWidget = () => {
                 <MdKeyboard /> Dyslexia Friendly
               </button>
             </div>
-
-            <div className="tool-group">
+  
+            <div className={styles.toolGroup}>
               <button 
                 onClick={() => setMotionReduction(!motionReduction)}
                 aria-pressed={motionReduction}
@@ -436,8 +633,8 @@ const AccessibilityWidget = () => {
                 <MdMotionPhotosOff /> Reduce Motion
               </button>
             </div>
-
-            <div className="tool-group">
+  
+            <div className={styles.toolGroup}>
               <button 
                 onClick={() => setKeyboardNavActive(!keyboardNavActive)}
                 aria-pressed={keyboardNavActive}
@@ -445,8 +642,8 @@ const AccessibilityWidget = () => {
                 <MdTouchApp /> Keyboard Nav
               </button>
             </div>
-
-            <div className="tool-group">
+  
+            <div className={styles.toolGroup}>
               <button 
                 onClick={isSpeaking ? stopSpeaking : () => navigableElements[activeElementIndex] && readElement(navigableElements[activeElementIndex])}
                 aria-pressed={isSpeaking}
@@ -455,8 +652,8 @@ const AccessibilityWidget = () => {
                 {isSpeaking ? 'Stop Reading' : 'Start Reading'}
               </button>
             </div>
-
-            <div className="speech-rate-control">
+  
+            <div className={styles.speechRateControl}>
               <label>Speech Rate:</label>
               <input
                 type="range"
@@ -467,9 +664,11 @@ const AccessibilityWidget = () => {
                 onChange={(e) => setSpeechRate(parseFloat(e.target.value))}
               />
               <span>{speechRate.toFixed(1)}x</span>
-            </div> <div className="tool-group">
+            </div>
+  
+            <div className={styles.toolGroup}>
               <h4><MdFormatSize /> Text Spacing</h4>
-              <div className="spacing-control">
+              <div className={styles.spacingControl}>
                 <label>Line Height</label>
                 <input
                   type="range"
@@ -484,8 +683,8 @@ const AccessibilityWidget = () => {
                 />
                 <span>{textSpacing.lineHeight}x</span>
               </div>
-
-              <div className="spacing-control">
+  
+              <div className={styles.spacingControl}>
                 <label>Letter Spacing</label>
                 <input
                   type="range"
@@ -500,8 +699,8 @@ const AccessibilityWidget = () => {
                 />
                 <span>{textSpacing.letterSpacing}px</span>
               </div>
-
-              <div className="spacing-control">
+  
+              <div className={styles.spacingControl}>
                 <label>Word Spacing</label>
                 <input
                   type="range"
@@ -517,46 +716,45 @@ const AccessibilityWidget = () => {
                 <span>{textSpacing.wordSpacing}px</span>
               </div>
             </div>
-
-            {/* Custom Cursor Controls */}
-            <div className="tool-group">
+  
+            <div className={styles.toolGroup}>
               <h4><MdMouse /> Cursor Style</h4>
-              <div className="cursor-grid">
+              <div className={styles.cursorGrid}>
                 <button 
                   onClick={() => setCursorStyle('default')}
-                  className={cursorStyle === 'default' ? 'active' : ''}
+                  className={cursorStyle === 'default' ? styles.active : ''}
                   aria-pressed={cursorStyle === 'default'}
                 >
                   Default
                 </button>
                 <button 
                   onClick={() => setCursorStyle('large')}
-                  className={cursorStyle === 'large' ? 'active' : ''}
+                  className={cursorStyle === 'large' ? styles.active : ''}
                   aria-pressed={cursorStyle === 'large'}
                 >
                   Large
                 </button>
                 <button 
                   onClick={() => setCursorStyle('high-contrast')}
-                  className={cursorStyle === 'high-contrast' ? 'active' : ''}
+                  className={cursorStyle === 'high-contrast' ? styles.active : ''}
                   aria-pressed={cursorStyle === 'high-contrast'}
                 >
                   High Contrast
                 </button>
                 <button 
                   onClick={() => setCursorStyle('reading')}
-                  className={cursorStyle === 'reading' ? 'active' : ''}
+                  className={cursorStyle === 'reading' ? styles.active : ''}
                   aria-pressed={cursorStyle === 'reading'}
                 >
                   Reading
                 </button>
               </div>
             </div>
-
-            <button className="reset-button" onClick={resetSettings}>
+  
+            <button className={styles.resetButton} onClick={resetSettings}>
               Reset All Settings
             </button>
-            </div>
+          </div>
         </div>
       )}
     </div>
