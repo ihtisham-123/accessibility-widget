@@ -1,185 +1,3 @@
-// // Components/AccessibilityWidget.js
-// import React, { useState, useEffect ,useRef} from 'react';
-// import { MdAccessibility, MdZoomIn,MdMotionPhotosOff,
-//   MdTouchApp, MdZoomOut, MdHighlight, MdKeyboard } from 'react-icons/md';
-// import './AccessibilityWidget.css'; // Create this CSS file
-
-// const AccessibilityWidget = () => {
-//   const [fontSize, setFontSize] = useState(16);
-//   const [highContrast, setHighContrast] = useState(false);
-//   const [dyslexiaFriendly, setDyslexiaFriendly] = useState(false);
-//   const [motionReduction, setMotionReduction] = useState(false);
-//   const [keyboardNavigation, setKeyboardNavigation] = useState(false);
-//   const [showMenu, setShowMenu] = useState(false);
-//   const menuRef = useRef<HTMLDivElement>(null);
-
-//   // Add motion reduction class to body
-//   useEffect(() => {
-//     if (motionReduction) {
-//       document.body.classList.add('reduce-motion');
-//     } else {
-//       document.body.classList.remove('reduce-motion');
-//     }
-//   }, [motionReduction]);
-
-//   // Keyboard navigation enhancements
-//   useEffect(() => {
-//     const handleKeyDown = (e) => {
-//       if (keyboardNavigation && e.key === 'Tab') {
-//         document.body.classList.add('keyboard-navigation');
-//       }
-//     };
-
-//     const handleMouseDown = () => {
-//       document.body.classList.remove('keyboard-navigation');
-//     };
-
-//     document.addEventListener('keydown', handleKeyDown);
-//     document.addEventListener('mousedown', handleMouseDown);
-
-//     return () => {
-//       document.removeEventListener('keydown', handleKeyDown);
-//       document.removeEventListener('mousedown', handleMouseDown);
-//     };
-//   }, [keyboardNavigation]);
-  
-//   useEffect(() => {
-//     if (showMenu && menuRef.current) {
-//       const focusableElements = menuRef.current.querySelectorAll('button');
-//       if (focusableElements.length > 0) {
-//         focusableElements[0].focus();
-//       }
-//     }
-//   }, [showMenu]);
-
-//   // Apply accessibility settings to the whole document
-//   useEffect(() => {
-//     document.documentElement.style.fontSize = `${fontSize}px`;
-    
-//     if (highContrast) {
-//       document.body.classList.add('high-contrast');
-//     } else {
-//       document.body.classList.remove('high-contrast');
-//     }
-
-//     if (dyslexiaFriendly) {
-//       document.body.classList.add('dyslexia-friendly');
-//     } else {
-//       document.body.classList.remove('dyslexia-friendly');
-//     }
-//   }, [fontSize, highContrast, dyslexiaFriendly]);
-
-//   // Save settings to localStorage
-//   useEffect(() => {
-//     localStorage.setItem('accessibilitySettings', JSON.stringify({
-//       fontSize,
-//       highContrast,
-//       dyslexiaFriendly,
-//       motionReduction,
-//       keyboardNavigation
-//     }));
-//   }, [fontSize, highContrast, dyslexiaFriendly, motionReduction, keyboardNavigation]);
-//   // Load settings from localStorage
-//   useEffect(() => {
-//     const savedSettings = localStorage.getItem('accessibilitySettings');
-//     if (savedSettings) {
-//       const { fontSize, highContrast, dyslexiaFriendly } = JSON.parse(savedSettings);
-//       setFontSize(fontSize);
-//       setHighContrast(highContrast);
-//       setDyslexiaFriendly(dyslexiaFriendly); 
-//        const settings = JSON.parse(savedSettings);
-//             setMotionReduction(settings.motionReduction || false);
-//             setKeyboardNavigation(settings.keyboardNavigation || false);
-//     }
-//   }, []);
-
-
-//   const resetSettings = () => {
-//     setFontSize(16);
-//     setHighContrast(false);
-//     setDyslexiaFriendly(false);
-//     setMotionReduction(false);
-//     setKeyboardNavigation(false);
-//     document.body.classList.remove(
-//       'high-contrast',
-//       'dyslexia-friendly',
-//       'reduce-motion'
-//     );
-//   };
-
-//   return (
-//     <div className="accessibility-widget">
-//       <button 
-//         className="widget-toggle"
-//         onClick={() => setShowMenu(!showMenu)}
-//         aria-label="Accessibility settings"
-//         aria-expanded={showMenu}
-//       >
-//         <MdAccessibility size={24} />
-//       </button>
-
-//       {showMenu && (
-//         <div className="widget-menu text-black">
-//           <div className="menu-section">
-//             <h3>Accessibility Tools</h3>
-            
-//             <div className="tool-group">
-//               <button onClick={() => setFontSize(s => Math.min(24, s + 2))}>
-//                 <MdZoomIn /> Increase Text
-//               </button>
-//               <button onClick={() => setFontSize(s => Math.max(12, s - 2))}>
-//                 <MdZoomOut /> Decrease Text
-//               </button>
-//             </div>
-
-//             <div className="tool-group">
-//               <button 
-//                 onClick={() => setHighContrast(!highContrast)}
-//                 aria-pressed={highContrast}
-//               >
-//                 <MdHighlight /> High Contrast
-//               </button>
-//             </div>
-
-//             <div className="tool-group">
-//               <button 
-//                 onClick={() => setDyslexiaFriendly(!dyslexiaFriendly)}
-//                 aria-pressed={dyslexiaFriendly}
-//               >
-//                 <MdKeyboard /> Dyslexia Friendly
-//               </button>
-//             </div>
-//             <div className="tool-group">
-//               <button 
-//                 onClick={() => setMotionReduction(!motionReduction)}
-//                 aria-pressed={motionReduction}
-//               >
-//                 <MdMotionPhotosOff /> Reduce Motion
-//               </button>
-//             </div>
-
-//             {/* Keyboard Navigation Toggle */}
-//             <div className="tool-group">
-//               <button 
-//                 onClick={() => setKeyboardNavigation(!keyboardNavigation)}
-//                 aria-pressed={keyboardNavigation}
-//               >
-//                 <MdTouchApp /> Keyboard Navigation
-//               </button>
-//             </div>
-
-
-//             <button className="reset-button" onClick={resetSettings}>
-//               Reset Settings
-//             </button>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default AccessibilityWidget;
 
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -193,7 +11,8 @@ import {
   MdTouchApp,
   MdVolumeUp,
   MdVolumeOff,  MdFormatSize,
-  MdMouse
+  MdMouse,
+  MdClose
 } from 'react-icons/md';
 import './AccessibilityWidget.css';
 
@@ -399,8 +218,16 @@ const AccessibilityWidget = () => {
             aria-modal="true"
           >
             <div className="menu-section space-y-4">
-              <h3 className="text-lg font-semibold mb-4">Accessibility Tools</h3>
-  
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">Accessibility Tools</h3>
+              <button 
+                onClick={() => setShowMenu(false)}
+                className="p-1 hover:bg-gray-100 rounded-full"
+                aria-label="Close accessibility menu"
+              >
+                <MdClose size={20} />
+              </button>
+            </div>
             <div className="tool-group">
               <button onClick={() => setFontSize(s => Math.min(24, s + 2))}>
                 <MdZoomIn /> Increase Text
